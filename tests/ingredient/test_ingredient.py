@@ -15,6 +15,6 @@ def test_ingredient():
     assert fisrt_ingredient.__eq__(second_ingredient)
     assert fisrt_ingredient.__eq__(fisrt_ingredient)
     assert not third_ingredient.__eq__(fisrt_ingredient)
-    assert repr(fisrt_ingredient) == "Ingredient('ingredient A')"
-    assert fisrt_ingredient.name == "ingredient A"
+    assert repr(fisrt_ingredient) == "Ingredient('farinha')"
+    assert fisrt_ingredient.name == "farinha"
     assert third_ingredient.restrictions == third_ingredient_restrictions
