@@ -20,5 +20,7 @@ class MenuData:
                 else:
                     ingredient = Ingredient(row["ingredient"])
                     recipe_amount = int(row["recipe_amount"])
-                    dishes_dict[row["dish"]].add_ingredient_dependency(ingredient, recipe_amount)
+                    dishes_dict[row["dish"]].add_ingredient_dependency(
+                        ingredient, recipe_amount
+                    )
             self.dishes.update(dishes_dict.values())
