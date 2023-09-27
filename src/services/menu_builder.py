@@ -28,15 +28,18 @@ class MenuBuilder:
     def get_main_menu(self, restriction=None) -> List[Dict]:
         menu_list = []
         for dish in self.menu_data.dishes:
-            menu_item = {
-                "dish_name": dish.name,
-                "ingredients": dish.get_ingredients(),
-                "price": dish.price,
-                "restrictions": dish.get_restrictions(),
-            }
-            if restriction is not None:
-                if restriction not in menu_item["restrictions"]:
+            availability = self.inventory.check_recipe_availability(dish.recipe)
+            print (f' \n\nrecipe: {availability} \n\n')
+            if self.inventory.check_recipe_availability(dish.recipe):
+                menu_item = {
+                    "dish_name": dish.name,
+                    "ingredients": dish.get_ingredients(),
+                    "price": dish.price,
+                    "restrictions": dish.get_restrictions(),
+                }
+                if restriction is not None:
+                    if restriction not in menu_item["restrictions"]:
+                        menu_list.append(menu_item)
+                else:
                     menu_list.append(menu_item)
-            else:
-                menu_list.append(menu_item)
         return menu_list
