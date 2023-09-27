@@ -28,8 +28,6 @@ class MenuBuilder:
     def get_main_menu(self, restriction=None) -> List[Dict]:
         menu_list = []
         for dish in self.menu_data.dishes:
-            availability = self.inventory.check_recipe_availability(dish.recipe)
-            print (f' \n\nrecipe: {availability} \n\n')
             if self.inventory.check_recipe_availability(dish.recipe):
                 menu_item = {
                     "dish_name": dish.name,
