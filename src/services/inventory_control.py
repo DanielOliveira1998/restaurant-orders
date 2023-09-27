@@ -24,11 +24,22 @@ def read_csv_inventory(inventory_file_path=BASE_INVENTORY) -> Inventory:
 class InventoryMapping:
     def __init__(self, inventory_file_path=BASE_INVENTORY) -> None:
         self.inventory = read_csv_inventory(inventory_file_path)
+        
 
     # Req 5.1
     def check_recipe_availability(self, recipe: Recipe) -> bool:
-        pass
+        for ingredient in recipe:
+            # return f'recipe: ingredient: {ingredient} {recipe[ingredient]} inventory: ingredient: {ingredient} {self.inventory[ingredient]}'
+            if recipe[ingredient] > self.inventory[ingredient]:
+                return False
+        return True
 
     # Req 5.2
     def consume_recipe(self, recipe: Recipe) -> None:
-        pass
+        availability = self.check_recipe_availability(recipe)
+        if availability == True:
+            for ingredient, quantity in recipe.items():
+                self.inventory[ingredient] -= quantity
+            return None
+        else:
+            raise ValueError
